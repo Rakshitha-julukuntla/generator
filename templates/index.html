@@ -5,68 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Generator</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
-        form { display: inline-block; text-align: left; padding: 20px; border: 1px solid black; width: 50%; }
-        label { font-weight: bold; display: block; margin-top: 10px; }
-        input, textarea { width: 100%; padding: 5px; margin-bottom: 10px; }
-        button { padding: 10px; background-color: blue; color: white; border: none; cursor: pointer; }
+        body { 
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form { 
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: 600;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+        .file-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+        .file-input label {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .file-input label:hover {
+            background-color: #0056b3;
+        }
+        .file-input input {
+            display: none;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            accent-color: #007bff;
+            transform: scale(1.2);
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Resume Generator</h2>
+    <div class="container">
+        <h2>Resume Generator</h2>
+        <form action="/resume" method="post" enctype="multipart/form-data">
 
-    <form action="/resume" method="post" enctype="multipart/form-data">
-        <label>Upload Profile Photo:</label>
-        <input type="file" name="photo1" accept="image/*" required>
+            <div class="file-input">
+                <label for="photo">Upload Profile Photo</label>
+                <input type="file" id="photo" name="photo1" accept="image/*" required>
+            </div>
 
-        <label>Name:</label>
-        <input type="text" name="name" required>
+            <label>Name:</label>
+            <input type="text" name="name" required>
 
-        <label>Email:</label>
-        <input type="email" name="email" required>
+            <label>Email:</label>
+            <input type="email" name="email" required>
 
-        <label>Phone:</label>
-        <input type="text" name="phone" required>
+            <label>Phone:</label>
+            <input type="text" name="phone" required>
 
-        <label>LinkedIn Profile:</label>
-        <input type="url" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
+            <label>LinkedIn Profile:</label>
+            <input type="url" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
 
-        <label>GitHub Profile:</label>
-        <input type="url" name="github" placeholder="https://github.com/your-username">
+            <label>GitHub Profile:</label>
+            <input type="url" name="github" placeholder="https://github.com/your-username">
 
-        <label>Field (IT / Non-IT):</label>
-        <input type="text" name="field" required>
+            <label>Field:</label>
+            <div class="radio-group">
+                <label><input type="radio" name="field" value="IT" required> IT</label>
+                <label><input type="radio" name="field" value="Non-IT" required> Non-IT</label>
+            </div>
 
-        <label>Profile Summary:</label>
-        <textarea name="profile_description" placeholder="Write a short summary about yourself"></textarea>
+            <label>Profile Summary:</label>
+            <textarea name="profile_description" placeholder="Write a short summary about yourself"></textarea>
 
-        <label>Skills (comma-separated):</label>
-        <input type="text" name="skills" required>
+            <label>Skills (comma-separated):</label>
+            <input type="text" name="skills" required>
 
-        <label>Experience (comma-separated, e.g. 'Software Engineer at XYZ, Intern at ABC'):</label>
-        <input type="text" name="experience" required>
+            <label>Experience (comma-separated):</label>
+            <input type="text" name="experience" required>
 
-        <label>Projects (comma-separated):</label>
-        <input type="text" name="projects" required>
+            <label>Projects (comma-separated):</label>
+            <input type="text" name="projects" required>
 
-        <label>Tech Stack (comma-separated, same order as projects):</label>
-        <input type="text" name="tech_stacks" required>
+            <label>Tech Stack (comma-separated, same order as projects):</label>
+            <input type="text" name="tech_stacks" required>
 
-        <label>Certifications (comma-separated):</label>
-        <input type="text" name="certifications" required>
+            <label>Certifications (comma-separated):</label>
+            <input type="text" name="certifications" required>
 
-        <label>Certification Type (IT/Non-IT, same order as certifications):</label>
-        <input type="text" name="cert_types" required>
+            <label>Certification Type (IT/Non-IT, same order as certifications):</label>
+            <input type="text" name="cert_types" required>
 
-        <label>Education:</label>
-        <input type="text" name="degree" placeholder="Degree" required>
-        <input type="text" name="institution" placeholder="Institution" required>
-        <input type="text" name="edu_start" placeholder="Start Year" required>
-        <input type="text" name="edu_end" placeholder="End Year" required>
+            <label>Education:</label>
+            <input type="text" name="degree" placeholder="Degree" required>
+            <input type="text" name="institution" placeholder="Institution" required>
+            <input type="text" name="edu_start" placeholder="Start Year" required>
+            <input type="text" name="edu_end" placeholder="End Year" required>
 
-        <button type="submit">Generate Resume</button>
-    </form>
+            <button type="submit">Generate Resume</button>
+        </form>
+    </div>
 
 </body>
 </html>

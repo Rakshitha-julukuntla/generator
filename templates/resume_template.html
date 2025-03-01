@@ -5,14 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Resume</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
-        .container { border: 2px solid black; padding: 20px; position: relative; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            max-width: 800px; 
+            margin: auto; 
+            background-color: #f4f4f4;
+        }
+        .container { 
+            border: 2px solid black; 
+            padding: 20px; 
+            position: relative; 
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
         h1 { text-align: center; }
-        h2 { text-align: left; border-bottom: 2px solid black; padding-bottom: 5px; margin-top: 20px; }
+        h2 { 
+            text-align: left; 
+            border-bottom: 2px solid black; 
+            padding-bottom: 5px; 
+            margin-top: 20px; 
+        }
         ul { padding-left: 20px; }
-        .profile-pic { position: absolute; top: 20px; right: 20px; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
-        .links { text-align: left; margin-top: 10px; }
-        .links a { display: block; text-decoration: none; color: blue; }
+        .profile-pic { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            width: 120px; 
+            height: 120px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+        }
+        .links, .education { text-align: left; margin-top: 10px; }
+        .links p { margin: 0; } 
+        .links a { 
+            display: block; 
+            text-decoration: none; 
+            color: blue; 
+        }
     </style>
 </head>
 <body>
@@ -27,12 +58,19 @@
 
     <div class="links">
         {% if data['linkedin'] %}
-            <a href="{{ data['linkedin'] }}" target="_blank">LinkedIn Profile</a>
+            <p><a href="{{ data['linkedin'] }}" target="_blank">{{ data['linkedin'] }}</a></p>
         {% endif %}
         {% if data['github'] %}
-            <a href="{{ data['github'] }}" target="_blank">GitHub Profile</a>
+            <p><a href="{{ data['github'] }}" target="_blank">{{ data['github'] }}</a></p>
         {% endif %}
     </div>
+
+    <h2>Education</h2>
+    <ul>
+        {% for edu in education_entries %}
+            <li><strong>{{ edu.degree }}</strong> at {{ edu.institution }} ({{ edu.start }} - {{ edu.end }})</li>
+        {% endfor %}
+    </ul>
 
     <hr>
 
@@ -60,13 +98,6 @@
     <ul>
         {% for cert in certification_list %}
             <li><strong>{{ cert.name }}</strong> - {{ cert.description }}</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Education</h2>
-    <ul>
-        {% for edu in education_entries %}
-            <li><strong>{{ edu.degree }}</strong> at {{ edu.institution }} ({{ edu.start }} - {{ edu.end }})</li>
         {% endfor %}
     </ul>
 
