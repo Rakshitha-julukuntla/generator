@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        form { display: inline-block; text-align: left; padding: 20px; border: 1px solid black; width: 50%; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 5px; margin-bottom: 10px; }
+        button { padding: 10px; background-color: blue; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>Resume Generator</h2>
+
+    <form action="/resume" method="post" enctype="multipart/form-data">
+        <label>Upload Profile Photo:</label>
+        <input type="file" name="photo1" accept="image/*" required>
+
+        <label>Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Phone:</label>
+        <input type="text" name="phone" required>
+
+        <label>LinkedIn Profile:</label>
+        <input type="url" name="linkedin" placeholder="https://linkedin.com/in/your-profile">
+
+        <label>GitHub Profile:</label>
+        <input type="url" name="github" placeholder="https://github.com/your-username">
+
+        <label>Field (IT / Non-IT):</label>
+        <input type="text" name="field" required>
+
+        <label>Profile Summary:</label>
+        <textarea name="profile_description" placeholder="Write a short summary about yourself"></textarea>
+
+        <label>Skills (comma-separated):</label>
+        <input type="text" name="skills" required>
+
+        <label>Experience (comma-separated, e.g. 'Software Engineer at XYZ, Intern at ABC'):</label>
+        <input type="text" name="experience" required>
+
+        <label>Projects (comma-separated):</label>
+        <input type="text" name="projects" required>
+
+        <label>Tech Stack (comma-separated, same order as projects):</label>
+        <input type="text" name="tech_stacks" required>
+
+        <label>Certifications (comma-separated):</label>
+        <input type="text" name="certifications" required>
+
+        <label>Certification Type (IT/Non-IT, same order as certifications):</label>
+        <input type="text" name="cert_types" required>
+
+        <label>Education:</label>
+        <input type="text" name="degree" placeholder="Degree" required>
+        <input type="text" name="institution" placeholder="Institution" required>
+        <input type="text" name="edu_start" placeholder="Start Year" required>
+        <input type="text" name="edu_end" placeholder="End Year" required>
+
+        <button type="submit">Generate Resume</button>
+    </form>
+
+</body>
+</html>

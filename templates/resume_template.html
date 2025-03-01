@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Resume</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        .container { border: 2px solid black; padding: 20px; position: relative; }
+        h1 { text-align: center; }
+        h2 { text-align: left; border-bottom: 2px solid black; padding-bottom: 5px; margin-top: 20px; }
+        ul { padding-left: 20px; }
+        .profile-pic { position: absolute; top: 20px; right: 20px; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
+        .links { text-align: left; margin-top: 10px; }
+        .links a { display: block; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% if photo1_path %}
+        <img src="{{ photo1_path }}" alt="Profile Photo" class="profile-pic">
+    {% endif %}
+    
+    <h1>{{ data['name'] }}</h1>
+    <p><strong>Email:</strong> {{ data['email'] }} | <strong>Phone:</strong> {{ data['phone'] }}</p>
+
+    <div class="links">
+        {% if data['linkedin'] %}
+            <a href="{{ data['linkedin'] }}" target="_blank">LinkedIn Profile</a>
+        {% endif %}
+        {% if data['github'] %}
+            <a href="{{ data['github'] }}" target="_blank">GitHub Profile</a>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <h2>Professional Summary</h2>
+    <p>{{ summary|safe }}</p>
+
+    <h2>Skills</h2>
+    <p>{{ skills|join(', ') }}</p>
+
+    <h2>Work Experience</h2>
+    <ul>
+        {% for exp in experience %}
+            <li>{{ exp }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Projects</h2>
+    <ul>
+        {% for proj in project_list %}
+            <li><strong>{{ proj.name }}</strong> - {{ proj.tech }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Certifications</h2>
+    <ul>
+        {% for cert in certification_list %}
+            <li><strong>{{ cert.name }}</strong> - {{ cert.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Education</h2>
+    <ul>
+        {% for edu in education_entries %}
+            <li><strong>{{ edu.degree }}</strong> at {{ edu.institution }} ({{ edu.start }} - {{ edu.end }})</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+</body>
+</html>
